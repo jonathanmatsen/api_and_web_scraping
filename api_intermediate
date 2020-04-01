@@ -18,3 +18,11 @@ orgs = response.json()
 params = {"per_page": 50, "page": 2}
 response = requests.get("https://api.github.com/users/VikParuchuri/starred", headers=headers, params=params)
 page2_repos = response.json()
+
+#post requests
+
+payload = {"name": "learning-about-apis"}
+
+response = requests.post("https://api.github.com/user/repos", json=payload, headers=headers)
+
+status = response.status_code
