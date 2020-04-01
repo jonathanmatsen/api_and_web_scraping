@@ -26,3 +26,9 @@ payload = {"name": "learning-about-apis"}
 response = requests.post("https://api.github.com/user/repos", json=payload, headers=headers)
 
 status = response.status_code
+
+#put/patch requests
+
+payload = {"description": "Learning about requests!", "name": "learning-about-apis"}
+response = requests.patch("https://api.github.com/repos/VikParuchuri/learning-about-apis", json=payload, headers=headers)
+status = response.status_code
