@@ -56,3 +56,11 @@ print(type(json_data))
 print(json_data)
 
 first_pass_duration = json_data["response"][0]["duration"]
+
+#find the number of people in space
+
+response = requests.get('http://api.open-notify.org/astros.json')
+
+json_data = response.json()
+
+in_space_count = json_data['number']
