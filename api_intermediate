@@ -12,3 +12,9 @@ print(response.json())
 response = requests.get("https://api.github.com/users/VikParuchuri/orgs", headers=headers)
 
 orgs = response.json()
+
+#pagination
+
+params = {"per_page": 50, "page": 2}
+response = requests.get("https://api.github.com/users/VikParuchuri/starred", headers=headers, params=params)
+page2_repos = response.json()
