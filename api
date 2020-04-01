@@ -3,3 +3,14 @@ import requests
 response = requests.get("http://api.open-notify.org/iss-now.json")
 
 status_code = response.status_code
+
+get_request = requests.get("http://api.open-notify.org/iss-pass")
+
+status_code = get_request.status_code
+
+#adding query parameters
+
+parameters = {'lat': 37.78, 'lon': -122.41}
+
+response = requests.get("http://api.open-notify.org/iss-pass.json", params = parameters_2)
+content = response.content
