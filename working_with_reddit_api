@@ -44,3 +44,13 @@ for comment in comments_list:
     if cm['ups'] >= most_upvotes_comment:
         most_upvoted_comment = cm['id']
         most_upvotes_comment = cm['ups']
+
+# upvoting a comment via post to api
+
+headers = {"Authorization": "bearer 13426216-4U1ckno9J5AiK72VRbpEeBaMSKk", "User-Agent": "Dataquest/1.0"}
+
+payload = {"dir": 1, "id": 'd16y4ry'}
+
+response = requests.post("https://oauth.reddit.com/api/vote", headers=headers, json=payload)
+
+status = response.status_code
