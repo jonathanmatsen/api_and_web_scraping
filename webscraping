@@ -40,3 +40,11 @@ first_paragraph = parser.find_all("p", id="first")[0]
 print(first_paragraph.text)
 
 second_paragraph_text = parser.find_all("p", id="second")[0].text
+
+#element classes
+first_inner_paragraph = parser.find_all("p", class_="inner-text")[0]
+print(first_inner_paragraph.text)
+
+second_inner_paragraph_text = parser.find_all('p', class_="inner-text")[1].text
+
+first_outer_paragraph_text = parser.find_all('p', class_="outer-text")[0].text
