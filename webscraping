@@ -3,3 +3,14 @@
 response = requests.get("http://dataquestio.github.io/web-scraping-pages/simple.html")
 
 content  = response.content
+
+#retrieving elements from a page
+from bs4 import BeautifulSoup
+
+# Initialize the parser, and pass in the content we grabbed earlier.
+parser = BeautifulSoup(content, 'html.parser')
+body = parser.body
+p = body.p
+print(p.text)
+
+title_text = parser.title.text
