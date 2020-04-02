@@ -48,3 +48,20 @@ print(first_inner_paragraph.text)
 second_inner_paragraph_text = parser.find_all('p', class_="inner-text")[1].text
 
 first_outer_paragraph_text = parser.find_all('p', class_="outer-text")[0].text
+
+# using css selectors
+# Get the website that contains classes and IDs.
+response = requests.get("http://dataquestio.github.io/web-scraping-pages/ids_and_classes.html")
+content = response.content
+parser = BeautifulSoup(content, 'html.parser')
+
+# Select all of the elements that have the first-item class.
+first_items = parser.select(".first-item")
+
+# Print the text of the first paragraph (the first element with the first-item class).
+print(first_items[0].text)
+
+
+first_outer_text = parser.select(".outer-text")[0].text
+
+second_text = parser.select("#second")[0].text
