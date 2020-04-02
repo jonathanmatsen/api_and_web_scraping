@@ -14,3 +14,17 @@ p = body.p
 print(p.text)
 
 title_text = parser.title.text
+
+#using find all
+parser = BeautifulSoup(content, 'html.parser')
+
+# Get a list of all occurrences of the body tag in the element.
+body = parser.find_all("body")
+
+# Get the paragraph tag.
+p = body[0].find_all("p")
+
+# Get the text.
+print(p[0].text)
+
+title_text = parser.find_all("title")[0].text
