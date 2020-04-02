@@ -1,0 +1,26 @@
+import requests
+
+params = {"action": "query", "format": "json", "prop": "categories", "titles": "Britney Spears"}
+URL = "https://en.wikipedia.org/w/api.php"
+
+response = requests.get(url=URL, params=params)
+
+data = response.content
+json_data = response.json()
+
+print(data)
+b'{"continue":{"clcontinue":"3382|All_articles_with_failed_verification","continue":"||"},"query":{"pages":{"3382":{"pageid":3382,"ns":0,"title":"Britney Spears","categories":[{"ns":14,"title":"Category:1981 births"},{"ns":14,"title":"Category:20th-century American actresses"},{"ns":14,"title":"Category:20th-century American singers"},{"ns":14,"title":"Category:20th-century American women singers"},{"ns":14,"title":"Category:21st-century American actresses"},{"ns":14,"title":"Category:21st-century American singers"},{"ns":14,"title":"Category:21st-century American women singers"},{"ns":14,"title":"Category:Actresses from Louisiana"},{"ns":14,"title":"Category:Actresses from Mississippi"},{"ns":14,"title":"Category:All articles containing potentially dated statements"}]}}}}'
+
+print(json_data)
+{'continue': {'clcontinue': '3382|All_articles_with_failed_verification', 'continue': '||'}, 'query': {'pages': {'3382': {'pageid': 3382, 'ns': 0, 'title': 'Britney Spears', 'categories': [{'ns': 14, 'title': 'Category:1981 births'}, {'ns': 14, 'title': 'Category:20th-century American actresses'}, {'ns': 14, 'title': 'Category:20th-century American singers'}, {'ns': 14, 'title': 'Category:20th-century American women singers'}, {'ns': 14, 'title': 'Category:21st-century American actresses'}, {'ns': 14, 'title': 'Category:21st-century American singers'}, {'ns': 14, 'title': 'Category:21st-century American women singers'}, {'ns': 14, 'title': 'Category:Actresses from Louisiana'}, {'ns': 14, 'title': 'Category:Actresses from Mississippi'}, {'ns': 14, 'title': 'Category:All articles containing potentially dated statements'}]}}}}
+
+status = response.status_code
+print(status)
+200
+
+categories = json_data['query']['pages']['3382']['categories'][:]
+
+print(categories)
+[{'ns': 14, 'title': 'Category:1981 births'}, {'ns': 14, 'title': 'Category:20th-century American actresses'}, {'ns': 14, 'title': 'Category:20th-century American singers'}, {'ns': 14, 'title': 'Category:20th-century American women singers'}, {'ns': 14, 'title': 'Category:21st-century American actresses'}, {'ns': 14, 'title': 'Category:21st-century American singers'}, {'ns': 14, 'title': 'Category:21st-century American women singers'}, {'ns': 14, 'title': 'Category:Actresses from Louisiana'}, {'ns': 14, 'title': 'Category:Actresses from Mississippi'}, {'ns': 14, 'title': 'Category:All articles containing potentially dated statements'}]
+>>> for dict in categories:
+...
