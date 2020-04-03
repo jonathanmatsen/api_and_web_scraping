@@ -9,18 +9,21 @@ data = response.content
 json_data = response.json()
 
 print(data)
-b'{"continue":{"clcontinue":"3382|All_articles_with_failed_verification","continue":"||"},"query":{"pages":{"3382":{"pageid":3382,"ns":0,"title":"Britney Spears","categories":[{"ns":14,"title":"Category:1981 births"},{"ns":14,"title":"Category:20th-century American actresses"},{"ns":14,"title":"Category:20th-century American singers"},{"ns":14,"title":"Category:20th-century American women singers"},{"ns":14,"title":"Category:21st-century American actresses"},{"ns":14,"title":"Category:21st-century American singers"},{"ns":14,"title":"Category:21st-century American women singers"},{"ns":14,"title":"Category:Actresses from Louisiana"},{"ns":14,"title":"Category:Actresses from Mississippi"},{"ns":14,"title":"Category:All articles containing potentially dated statements"}]}}}}'
-
 print(json_data)
-{'continue': {'clcontinue': '3382|All_articles_with_failed_verification', 'continue': '||'}, 'query': {'pages': {'3382': {'pageid': 3382, 'ns': 0, 'title': 'Britney Spears', 'categories': [{'ns': 14, 'title': 'Category:1981 births'}, {'ns': 14, 'title': 'Category:20th-century American actresses'}, {'ns': 14, 'title': 'Category:20th-century American singers'}, {'ns': 14, 'title': 'Category:20th-century American women singers'}, {'ns': 14, 'title': 'Category:21st-century American actresses'}, {'ns': 14, 'title': 'Category:21st-century American singers'}, {'ns': 14, 'title': 'Category:21st-century American women singers'}, {'ns': 14, 'title': 'Category:Actresses from Louisiana'}, {'ns': 14, 'title': 'Category:Actresses from Mississippi'}, {'ns': 14, 'title': 'Category:All articles containing potentially dated statements'}]}}}}
 
 status = response.status_code
 print(status)
-200
 
 categories = json_data['query']['pages']['3382']['categories'][:]
-
 print(categories)
-[{'ns': 14, 'title': 'Category:1981 births'}, {'ns': 14, 'title': 'Category:20th-century American actresses'}, {'ns': 14, 'title': 'Category:20th-century American singers'}, {'ns': 14, 'title': 'Category:20th-century American women singers'}, {'ns': 14, 'title': 'Category:21st-century American actresses'}, {'ns': 14, 'title': 'Category:21st-century American singers'}, {'ns': 14, 'title': 'Category:21st-century American women singers'}, {'ns': 14, 'title': 'Category:Actresses from Louisiana'}, {'ns': 14, 'title': 'Category:Actresses from Mississippi'}, {'ns': 14, 'title': 'Category:All articles containing potentially dated statements'}]
->>> for dict in categories:
-...
+
+category_titles = [dict_['title'] for dict_ in categories]
+print(category_titles)
+
+import pandas as pd
+
+clean_category_titles = [string.replace('Category:', '') for string in category_titles]
+print(clean_category_titles)
+
+clean_cat_title_series = pd.Series(data=clean_category_titles)
+print(clean_cat_title_series)
